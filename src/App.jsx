@@ -214,14 +214,14 @@ const App = () => {
         <section id='afzalliklar' className="mt-40 bg-[#F7F5F1] py-20 px-4">
           {/* AFZALLIKLAR */}
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-10">{t("benefits")}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-10">{t("benefits")}</h1>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2  gap-8 mb-20 max-w-7xl mx-auto">
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className="relative h-[280px] overflow-hidden rounded-lg shadow-lg bg-white cursor-pointer transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                className="relative h-[320px] overflow-hidden rounded-lg shadow-lg bg-white cursor-pointer transform transition duration-500 hover:scale-105 hover:shadow-xl"
               >
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-4">
