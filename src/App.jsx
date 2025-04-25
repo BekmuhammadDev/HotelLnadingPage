@@ -6,7 +6,9 @@ import bedroom from "./assets/images/bedroom.png"
 import goodplace from "./assets/images/goodplace.png"
 import resturant from "./assets/images/resturant.png"
 import parkovka from "./assets/images/parkovka.png"
+import { useTranslation } from 'react-i18next'; // Importing translation hook
 import { Link } from 'react-scroll';
+import "./i18"
 
 
 const cards = [
@@ -28,6 +30,8 @@ const features = [
 ];
 
 const App = () => {
+  const { t } = useTranslation();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const visibleCount = 4;
@@ -42,7 +46,7 @@ const App = () => {
   };
 
   const prev = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1 ) % cards.length);
+    setStartIndex((prevIndex) => (prevIndex + 1) % cards.length);
   };
 
   const goTo = (index) => {
@@ -76,22 +80,18 @@ const App = () => {
 
             {/* Text content */}
             <div className="w-full md:w-1/2 text-center md:text-left">
-              <p className="text-[#017A87] text-sm font-semibold mb-2">Biz Haqimizda</p>
+              <p className="text-[#017A87] text-sm font-semibold mb-2">{t("aboutUs")}</p>
               <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-                Payitaxt Hotel Andijondagi eng zamonaviy va hashamatli mehmonxona hisoblanadi.
+               {t("hotelDescription")}
               </h1>
               <p className="text-gray-700 text-sm md:text-base mb-6">
-                Mehmonxona shahar markaziga yaqin, Ko'plab do'kon va restoranlarga yaqin joyda joylashgan.
-                Masjidga juda yaqin. Ushbu zamonaviy mehmonxona sizga misli ko'rilmagan hashamatni taqdim
-                etadi. Bizning xodimlarimiz sizga sifatli xizmat ko'rsatish va unutilmas dam olishni
-                ta'minlash uchun kechayu kunduz ishlaydi. Va barcha ehtiyojlaringizni qondirishga intiladi.
-                Sizni kutib olishni intiqlik bilan kutamiz!
+                {t("hotelLocation")}
               </p>
               <button
                 className="bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 px-6 rounded"
                 onClick={() => setIsModalOpen(true)}
               >
-                AVVALDAN BUYURTMA BERISH
+                {t("preOrder")}
               </button>
               {/* Buyurtma */}
               {isModalOpen && (
@@ -105,24 +105,24 @@ const App = () => {
                       &times;
                     </button>
 
-                    <h2 className="text-xl font-semibold text-center mb-4">Buyurtma berish</h2>
+                    <h2 className="text-xl font-semibold text-center mb-4">{t("orderTitle")}</h2>
 
                     <form className="flex flex-col gap-4">
                       <input
                         type="text"
-                        placeholder="Ismingiz"
+                        placeholder={t("namePlaceholder")}
                         className="border rounded px-4 py-2"
                         required
                       />
                       <input
                         type="tel"
-                        placeholder="Telefon raqamingiz"
+                        placeholder={t("phonePlaceholder")}
                         className="border rounded px-4 py-2"
                         required
                       />
                       <input
                         type="email"
-                        placeholder="Email manzilingiz"
+                        placeholder={t("emailPlaceholder")}
                         className="border rounded px-4 py-2"
                       />
 
@@ -130,7 +130,7 @@ const App = () => {
                         type="submit"
                         className="bg-[#017A87] text-white font-semibold py-2 rounded hover:bg-[#015f67]"
                       >
-                        Yuborish
+                        {t("submitButton")}
                       </button>
                     </form>
                   </div>
@@ -162,7 +162,7 @@ const App = () => {
                       />
                       <div className="relative -top-5">
                         <button className="p-3 px-5 rounded-md bg-[#017A87] text-white font-bold">
-                          500000 so'm
+                          {t("price")}
                         </button>
                       </div>
                       <div className="text-center">
@@ -214,7 +214,7 @@ const App = () => {
         <section id='afzalliklar' className="mt-40 bg-[#F7F5F1] py-20 px-4">
           {/* AFZALLIKLAR */}
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-10">AFZALLIKLAR</h1>
+            <h1 className="text-5xl font-bold mb-10">{t("benefits")}</h1>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2  gap-8 mb-20 max-w-7xl mx-auto">
@@ -239,17 +239,17 @@ const App = () => {
 
           {/* MAXSUS XUSUSIYATLAR */}
           <div className="mt-16 max-w-6xl mx-auto px-4">
-            <h1 className="text-4xl font-bold text-center mb-12">SAYTDAGI MAXSUS XUSUSIYATLAR</h1>
+            <h1 className="text-4xl font-bold text-center mb-12">{t("specialFeatures")}</h1>
             <div className="flex flex-col md:flex-row justify-center gap-40">
 
               <div className="flex-1 space-y-4">
                 <div className="flex items-center gap-2">
                   <BedDouble className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">Shinam xonalar</h2>
+                  <h2 className="text-xl font-semibold">{t("cozyRooms")}</h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">Oshxona</h2>
+                  <h2 className="text-xl font-semibold">{t("kitchen")}</h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shirt className="text-[#CC9973]" />
@@ -257,22 +257,22 @@ const App = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <HandPlatter className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">Xona xizmati</h2>
+                  <h2 className="text-xl font-semibold">{t("roomService")}</h2>
                 </div>
               </div>
 
               <div className="flex-1 space-y-4">
                 <div className="flex items-center gap-2">
                   <SquareUser className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">Konferentsiya xonasi</h2>
+                  <h2 className="text-xl font-semibold">{t("conferenceRoom")}</h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">24/7 ish faoliyati</h2>
+                  <h2 className="text-xl font-semibold">{t("twentyFourSeven")}</h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">Bepul avto turargoh</h2>
+                  <h2 className="text-xl font-semibold">{t("freeParking")}</h2>
                 </div>
               </div>
             </div>
@@ -290,20 +290,20 @@ const App = () => {
                   <div className=" rounded-full p-4 mb-4">
                     <CircleUser className="text-black" size={100} />
                   </div>
-                  <h1 className="text-3xl font-bold mb-10">IMKONIYAT</h1>
+                  <h1 className="text-3xl font-bold mb-10">{t("facilities")}</h1>
 
                   <div className="flex justify-center gap-10 mb-10">
                     <div>
                       <h1 className="text-2xl font-bold text-[#BE9874]">600</h1>
-                      <h1 className="text-3xl font-bold">MEXMONLAR</h1>
+                      <h1 className="text-3xl font-bold">{t("guests")}</h1>
                     </div>
                     <div>
                       <h1 className="text-2xl font-bold text-[#BE9874]">200</h1>
-                      <h1 className="text-3xl font-bold">XONALAR</h1>
+                      <h1 className="text-3xl font-bold">{t("rooms")}</h1>
                     </div>
                   </div>
 
-                  <h1 className="text-2xl font-bold max-w-md">Ayollar va erkaklar uchun alohida bo'lim mavjud</h1>
+                  <h1 className="text-2xl font-bold max-w-md">{t("separateSections")}</h1>
                 </div>
 
                 {/* Second Section */}
@@ -311,17 +311,17 @@ const App = () => {
                   <div className=" rounded-full p-4 mb-4">
                     <CarFront className="text-black" size={100} />
                   </div>
-                  <h1 className="text-3xl font-bold mb-10">METRO VA MASJIDGACHA BO'LGAN MASOFA</h1>
+                  <h1 className="text-3xl font-bold mb-10">{t("metroDistance")}</h1>
 
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-10">
                     <div>
                       <h1 className="text-2xl font-bold">
-                        Eng yaqin metro <br /> Mirzo Ulug'bek va Novza
+                        {t("nearestMetro")}
                       </h1>
                     </div>
                     <div>
                       <h1 className="text-2xl font-bold text-[#BE9874]">700 M</h1>
-                      <h1 className="text-3xl font-bold">Masjiddan</h1>
+                      <h1 className="text-3xl font-bold">{t("nearestMosque")}</h1>
                     </div>
                   </div>
                 </div>
@@ -350,7 +350,7 @@ const App = () => {
 
             {/* O'ng tarafdagi forma */}
             <div className="w-full md:w-1/2 p-8">
-              <h2 className="text-5xl font-bold mb-6">Biz bilan bog‘lanish</h2>
+              <h2 className="text-5xl font-bold mb-6">{t("contactUs")}</h2>
 
               {/* Ism va Telefon yonma-yon */}
               <div className="flex flex-col md:flex-row gap-4 mb-4">
@@ -358,7 +358,7 @@ const App = () => {
 
                   <input
                     type="text"
-                    placeholder="Ismingizni kiriting"
+                    placeholder={t("namePlaceholder")}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
@@ -374,16 +374,16 @@ const App = () => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Xabaringiz</label>
+                <label className="block text-gray-700 mb-2">{t("yourMessage")}</label>
                 <textarea
-                  placeholder="Xabaringizni bu yerga yozing..."
+                  placeholder={t("writeYourMessage")}
                   rows="4"
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 ></textarea>
               </div>
 
               <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-                Arizangizni yuboring
+               {t("sendRequest")}
               </button>
             </div>
           </div>
@@ -410,28 +410,28 @@ const App = () => {
 
             <div className='flex items-start gap-5'>
               <MapPinned className="mt-1" />
-              <h1>Toshkent, Qtortol</h1>
+              <h1>{t("tashkent")}</h1>
             </div>
           </div>
 
           {/* Navigation Links */}
           <div>
-            <h1 className='mb-4 font-semibold text-lg'>BIZNING HAVOLALARIMIZ</h1>
+            <h1 className='mb-4 font-semibold text-lg'>{t("ourLinks")}</h1>
             <div className='flex flex-col gap-2'>
-              <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:underline">BIZ HAQIMIZDA</Link>
-              <Link to="rasimlar" smooth={true} duration={500} offset={-150} className="cursor-pointer hover:underline">RASIMLAR</Link>
-              <Link to="afzalliklar" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:underline">AFZALLIKLAR</Link>
-              <Link to="bronqilish" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:underline">BRON QILISH</Link>
-              <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer hover:underline">KONTAKTLAR</Link>
+              <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:underline">{t("aboutUs")}</Link>
+              <Link to="rasimlar" smooth={true} duration={500} offset={-150} className="cursor-pointer hover:underline">{t("images")}</Link>
+              <Link to="afzalliklar" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:underline">{t("advantages")}</Link>
+              <Link to="bronqilish" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:underline">{t("booking")}</Link>
+              <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer hover:underline">{t("contacts")}</Link>
             </div>
           </div>
 
           {/* Manager Info */}
           <div>
-            <h1 className='mb-4 font-semibold text-lg'>MENEJER</h1>
+            <h1 className='mb-4 font-semibold text-lg'>{t("manager")}</h1>
             <p className='mb-2'>+998 97 964 70 00</p>
             <button className='text-white bg-[#c39c75] px-4 py-2 rounded-md font-semibold hover:bg-[#a8835c] transition'>
-              Buyurtma
+             {t("orderButton")}
             </button>
           </div>
 

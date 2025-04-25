@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { IoCall } from "react-icons/io5";
+import { useTranslation } from 'react-i18next'; // Importing translation hook
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from 'react-scroll';
+import "../i18"
 
 
 const Header = () => {
+    const { t, i18n } = useTranslation(); // Initialize useTranslation
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleLanguage = (lang) => {
+        i18n.changeLanguage(lang); 
+    };
+
 
     return (
         <header className="w-full ">
@@ -20,26 +27,36 @@ const Header = () => {
 
                 {/* Desktop menu */}
                 <nav className="hidden  md:flex gap-8 text-white font-semibold tracking-wide text-sm">
-                    <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">BIZ HAQIMIZDA</Link>
-                    <Link to="rasimlar" smooth={true} duration={500} offset={-150} className="cursor-pointer">RASIMLAR</Link>
-                    <Link to="afzalliklar" smooth={true} duration={500} offset={-100} className="cursor-pointer">AFZALLIKLAR</Link>
-                    <Link to="bronqilish" smooth={true} duration={500} offset={-100} className="cursor-pointer">BRON QILISH</Link>
-                    <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer">KONTAKTLAR</Link>
+                    <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("aboutUs")}</Link>
+                    <Link to="rasimlar" smooth={true} duration={500} offset={-150} className="cursor-pointer">{t("images")}</Link>
+                    <Link to="afzalliklar" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("advantages")}</Link>
+                    <Link to="bronqilish" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("booking")}</Link>
+                    <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer">{t("contacts")}</Link>
                 </nav>
-
 
 
                 {/* Order Button */}
                 <div className='flex items-center gap-10'>
                     <div className="flex items-center gap-2 text-xl">
-                        <span className='text-white'>🇺🇿 /</span>
-                        <span className='text-white'>🇷🇺</span>
+                        <span
+                            className="cursor-pointer text-white"
+                            onClick={() => toggleLanguage('uz')}
+                        >
+                            🇺🇿
+                        </span>
+                        <span className='text-white'>/</span>
+                        <span
+                            className="cursor-pointer text-white"
+                            onClick={() => toggleLanguage('ru')}
+                        >
+                            🇷🇺
+                        </span>
                     </div>
                     <button
-                        className="hidden md:block bg-[#c39c75] text-white font-semibold px-6 py-2 rounded"
+                        className="hidden md:block bg-[#c39c75] text-white font-semibold px-10 py-2 rounded"
                         onClick={() => setIsModalOpen(true)}
                     >
-                        BUYURTMA
+                      {t("orderButton")}
                     </button>
                     {/* Buyurtma */}
                     {isModalOpen && (
@@ -53,24 +70,24 @@ const Header = () => {
                                     &times;
                                 </button>
 
-                                <h2 className="text-xl font-semibold text-center mb-4">Buyurtma berish</h2>
+                                <h2 className="text-xl font-semibold text-center mb-4">{t("orderTitle")}</h2>
 
                                 <form className="flex flex-col gap-4">
                                     <input
                                         type="text"
-                                        placeholder="Ismingiz"
+                                        placeholder={t("namePlaceholder")}
                                         className="border rounded px-4 py-2"
                                         required
                                     />
                                     <input
                                         type="tel"
-                                        placeholder="Telefon raqamingiz"
+                                        placeholder={t("phonePlaceholder")}
                                         className="border rounded px-4 py-2"
                                         required
                                     />
                                     <input
                                         type="email"
-                                        placeholder="Email manzilingiz"
+                                        placeholder={t("emailPlaceholder")}
                                         className="border rounded px-4 py-2"
                                     />
 
@@ -78,7 +95,7 @@ const Header = () => {
                                         type="submit"
                                         className="bg-[#017A87] text-white font-semibold py-2 rounded hover:bg-[#015f67]"
                                     >
-                                        Yuborish
+                                        {t("submitButton")}
                                     </button>
                                 </form>
                             </div>
@@ -87,23 +104,24 @@ const Header = () => {
 
                 </div>
 
-
-
                 {/* Mobile menu toggle */}
                 <div className="md:hidden text-white text-2xl" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     {isMenuOpen ? <FiX /> : <FiMenu />}
                 </div>
             </div>
 
-            {/* Mobile dropdown menu */}
             {isMenuOpen && (
-                <div className="md:hidden bg-[#1e3a5f] text-white px-6 py-4 space-y-4 text-sm font-semibold">
-                    <a href="#" className="block">XONALAR</a>
-                    <a href="#" className="block">AFZALLIKLAR</a>
-                    <a href="#" className="block">TAQQOSLASH</a>
-                    <a href="#" className="block">KONTAKLAR</a>
-                    <a href="#" className="block">RASMLAR</a>
-                    <button className="w-full bg-[#c39c75] text-white px-4 py-2 mt-2 rounded">
+                <div className="md:hidden fixed top-20 flex flex-col gap-2 px-5 z-40 w-full bg-[#1e3a5f] text-white  py-4 space-y-4 text-sm font-semibold">
+
+                    {/* Regular menu links */}
+                    <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("aboutUs")}</Link>
+                    <Link to="rasimlar" smooth={true} duration={500} offset={-150} className="cursor-pointer">{t("images")}</Link>
+                    <Link to="afzalliklar" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("advantages")}</Link>
+                    <Link to="bronqilish" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("booking")}</Link>
+                    <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer">{t("contacts")}</Link>
+
+                    {/* Order Button */}
+                    <button className="w-full bg-[#c39c75] text-white px-4 py-2 mt-4 rounded">
                         BUYURTMA
                     </button>
                 </div>
