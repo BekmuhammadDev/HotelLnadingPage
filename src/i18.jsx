@@ -45,7 +45,16 @@ i18n.use(initReactI18next).init({
         "sendRequest": "Arizangizni yuboring",
         "tashkent": "Toshkent, Qtortol",
         "ourLinks": "BIZNING HAVOLALARIMIZ",
-        "manager": "MENEJER"
+        "manager": "MENEJER",
+        "wifi_tv_service": "Bepul Wi-Fi internet, televizor, har kuni xizmat ko'rsatish.",
+        "best_location": "Biz eng yaxshi joydamiz. Shahar markaziga va masjidga yaqin.",
+        "restaurant_food": "Restoranimizda turli xil mazali taomlardan bahramand bo'lishingiz mumkin.",
+        "parking_info": "Bizning avtoturargohimiz ham keng va qulay, eng muhimi xavfsiz!",
+        "title_best_place": "Eng yaxshi joy",
+        "title_restaurants": "Restoranlar",
+        "title_parking": "Avtoturargoh",
+        "title_comfort_room":"Konfor xonasi",
+         "daily_cleaning": "Kundalik tozalash"
       }
     },
     ru: {
@@ -88,7 +97,17 @@ i18n.use(initReactI18next).init({
         "sendRequest": "Отправить запрос",
         "tashkent": "Ташкент, Квартал",
         "ourLinks": "НАШИ ССЫЛКИ",
-        "manager": "МЕНЕДЖЕР"
+        "manager": "МЕНЕДЖЕР",
+        "wifi_tv_service": "Бесплатный Wi-Fi, телевизор, ежедневное обслуживание.",
+        "best_location": "Мы находимся в лучшем месте. Близко к центру города и мечети.",
+        "restaurant_food": "В нашем ресторане вы можете насладиться разнообразными вкусными блюдами.",
+        "parking_info": "У нас просторная и удобная парковка, а главное — безопасная!",
+        "title_best_place": "Лучшее место",
+        "title_restaurants": "Рестораны",
+        "title_parking": "Парковка",
+        "title_comfort_room":"Номер Комфорт",
+        "daily_cleaning": "Ежедневная уборка"
+
       }
     }
   },

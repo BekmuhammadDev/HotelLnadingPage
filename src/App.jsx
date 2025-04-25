@@ -22,16 +22,17 @@ const cards = [
 
 ];
 
-const features = [
-  { id: 1, title: 'Konfor xonasi', img: bedroom, description: `Bepul Wi-Fi internet, televizor har kuni xizmat ko'rsatish.` },
-  { id: 2, title: 'Eng yaxshi joy', img: goodplace, description: 'Biz eng yaxshi joydamiz. Shahar markaziga va masjid ham yaqin' },
-  { id: 3, title: 'Restoranlar', img: resturant, description: `Restoranimizda turli xil mazali taomlardan bahramand bo'lishingiz mumkin` },
-  { id: 4, title: 'Avtoturargoh', img: parkovka, description: 'Bizning avtoturargohimiz ham keng va qulay, eng muhimi xavfsiz!' },
-];
+
 
 const App = () => {
   const { t } = useTranslation();
-
+  
+  const features = [
+    { id: 1, title: t('title_comfort_room'), img: bedroom, description: t("wifi_tv_service") },
+    { id: 2, title: t('title_best_place'), img: goodplace, description: t('best_location') },
+    { id: 3, title: t('title_restaurants'), img: resturant, description: t(`restaurant_food`) },
+    { id: 4, title: t('title_parking'), img: parkovka, description: t('parking_info') },
+  ];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const visibleCount = 4;
@@ -253,7 +254,7 @@ const App = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Shirt className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">Kundalik tozalash</h2>
+                  <h2 className="text-xl font-semibold">{t("daily_cleaning")}</h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <HandPlatter className="text-[#CC9973]" />
