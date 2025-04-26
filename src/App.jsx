@@ -24,7 +24,11 @@ const cards = [
   { id: 7, title: "Card 5", content: "This is the first card This is the first card This is the first card This is the first card" },
 
 ];
-
+const images = [
+  "https://picsum.photos/1600/500?random=1",
+  "https://picsum.photos/1600/500?random=2",
+  "https://picsum.photos/1600/500?random=3",
+];
 const App = () => {
 
   const { t } = useTranslation();
@@ -116,19 +120,40 @@ const App = () => {
       );
   };
 
+
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 12000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <Header />
       <main>
 
-        <section
-          className="w-full h-[100vh] bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://picsum.photos/1600/500?random=1')" }}
-        >
-          <div className="w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-            <h2 className="text-white text-3xl font-bold">Welcome to Our Section</h2>
+        <section className="w-full h-[100vh] overflow-hidden relative">
+          <div
+            className="flex transition-transform duration-1000 ease-in-out h-full"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {images.map((img, index) => (
+              <div key={index} className="w-full flex-shrink-0 h-[100vh] bg-cover bg-center" style={{ backgroundImage: `url(${img})` }}>
+                <div className="w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                 <div>
+                 <h2 className="text-white text-4xl mb-3 md:text-6xl font-bold">
+                    Welcome to Our Section
+                  </h2>
+                  <p className='text-white text-2xl mb-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br /> Odio tempora aut delectus ducimus! Quibusdam nesciunt, quis ipsa ex accusantium repellat?</p>
+                  <button className='bg-white p-3 px-5 rounded-md font-bold'>kO‘RISH</button>
+                 </div>
+                </div>
+              </div>
+            ))}
           </div>
-
         </section>
 
         <section id='bizhaqimizda' className="px-6 md:px-10">
