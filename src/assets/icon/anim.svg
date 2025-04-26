@@ -1,0 +1,67 @@
+<svg id="Logo_1" data-name="Logo 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1350" height="1080" viewBox="0 0 1350 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#filter);
+      }
+
+      .cls-2, .cls-4 {
+        fill: #0186ed;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-4 {
+        filter: url(#filter-2);
+      }
+
+      .cls-5, .cls-6 {
+        font-size: 150px;
+        text-anchor: middle;
+        font-family: "Futura Md BT";
+        font-weight: 500;
+      }
+
+      .cls-6 {
+        text-transform: uppercase;
+      }
+    </style>
+    <filter id="filter" filterUnits="userSpaceOnUse">
+      <feFlood result="flood"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+    <filter id="filter-2" x="495.312" y="557.875" width="81.032" height="23.313" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#e9c42e"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+    <image id="image" width="38" height="5" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAFCAYAAAApBZ42AAAATklEQVQokc3OMRFAABQA0EcHkwIsOqghiMlo0kQPHShgcEq4784iwX8JXnFtXY8VlRxODCXmRKlQY4lYkyDz10bsyHV67RGbcCfIfE6MD+wPCiPJiUL4AAAAAElFTkSuQmCC"/>
+  </defs>
+  <g id="tom" class="cls-1">
+    <path id="Прямоугольник_1_копия" data-name="Прямоугольник 1 копия" class="cls-2" d="M620.553,283.493a5.9,5.9,0,0,1,8.214-1.43L941.514,502.046a5.9,5.9,0,0,1-6.783,9.644L621.983,291.707A5.9,5.9,0,0,1,620.553,283.493Z"/>
+    <path id="Прямоугольник_1_копия_2" data-name="Прямоугольник 1 копия 2" class="cls-2" d="M307.055,510.509a5.89,5.89,0,0,0,8.207,1.429L627.755,292.105a5.891,5.891,0,1,0-6.778-9.638L308.484,502.3A5.892,5.892,0,0,0,307.055,510.509Z"/>
+    <path id="Прямоугольник_1_копия_3" data-name="Прямоугольник 1 копия 3" class="cls-2" d="M621.748,308.386a5.632,5.632,0,0,1,7.853-1.369l299.022,210.5a5.64,5.64,0,0,1-6.486,9.229l-299.021-210.5A5.644,5.644,0,0,1,621.748,308.386Z"/>
+    <path id="Прямоугольник_1_копия_3-2" data-name="Прямоугольник 1 копия 3" class="cls-2" d="M322.008,525.616a5.63,5.63,0,0,0,7.848,1.368L628.634,316.626a5.636,5.636,0,0,0-6.48-9.222L323.375,517.761A5.642,5.642,0,0,0,322.008,525.616Z"/>
+  </g>
+  <g id="Кроват">
+    <path id="Прямоугольник_1" data-name="Прямоугольник 1" class="cls-3" d="M587.522,569.067a19.586,19.586,0,0,1-19.587,19.587h-64.2a19.587,19.587,0,0,1,0-39.174h64.2A19.587,19.587,0,0,1,587.522,569.067Z"/>
+    <path id="Прямоугольник_1_копия_7" data-name="Прямоугольник 1 копия 7" class="cls-4" d="M576.353,569.534A11.668,11.668,0,0,1,564.684,581.2h-57.7a11.669,11.669,0,1,1,0-23.337h57.7A11.669,11.669,0,0,1,576.353,569.534Z"/>
+    <path id="Прямоугольник_1_копия_4" data-name="Прямоугольник 1 копия 4" class="cls-3" d="M468.4,681h-3.9a5.5,5.5,0,0,1-5.5-5.5v-211a5.5,5.5,0,0,1,5.5-5.5h3.9a5.5,5.5,0,0,1,5.5,5.5v211A5.5,5.5,0,0,1,468.4,681Z"/>
+    <path id="Прямоугольник_1_копия_5" data-name="Прямоугольник 1 копия 5" class="cls-3" d="M792.5,681h-1.107a5.5,5.5,0,0,1-5.5-5.5V496.214a5.5,5.5,0,0,1,5.5-5.5H792.5a5.5,5.5,0,0,1,5.5,5.5V675.5A5.5,5.5,0,0,1,792.5,681Z"/>
+    <path id="Прямоугольник_1_копия_6" data-name="Прямоугольник 1 копия 6" class="cls-3" d="M464.588,593.416v-3.924a5.5,5.5,0,0,1,5.5-5.5H792.5a5.5,5.5,0,0,1,5.5,5.5v3.924a5.5,5.5,0,0,1-5.5,5.5H470.087A5.5,5.5,0,0,1,464.588,593.416Z"/>
+  </g>
+  <g id="ajratuvchi">
+    <rect id="Прямоугольник_2" data-name="Прямоугольник 2" x="306" y="703" width="639" height="15" rx="7.5" ry="7.5"/>
+  </g>
+  <g id="Qatortol_savdo" data-name="Qatortol savdo">
+    <g id="elements">
+      <use id="Слой_3" data-name="Слой 3" x="760" y="882" xlink:href="#image"/>
+      <use id="Слой_3_копия" data-name="Слой 3 копия" x="440" y="882" xlink:href="#image"/>
+    </g>
+    <text id="Qatortol_Savdo_" data-name="Qatortol Savdo " class="cls-5" transform="translate(625.5 895.464) scale(0.243 0.241)"><tspan x="0">Qatortol Savdo </tspan></text>
+    <text id="Hostel" class="cls-6" transform="translate(619.5 828.088) scale(0.709)"><tspan x="0">Hostel</tspan></text>
+  </g>
+</svg>

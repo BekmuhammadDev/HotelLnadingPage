@@ -5,6 +5,7 @@ import { Link } from 'react-scroll';
 import "../i18"
 import emailjs from 'emailjs-com';
 import { useRef } from 'react';
+import animhostel from "../assets/icon/anim.svg"
 
 
 const Header = () => {
@@ -47,8 +48,8 @@ const Header = () => {
             {/* Main nav */}
             <div className="bg-gradient-to-r z-50 fixed bg-[#017A87] w-full px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <img src="/logo.png" alt="Logo" className="w-12 h-12 object-contain" />
+                <div className="flex items-center gap-2 w-40 h-16">
+                    <img src={animhostel} alt="Logo" className="w-40 h-28 object-contain" />
                 </div>
 
                 {/* Desktop menu */}

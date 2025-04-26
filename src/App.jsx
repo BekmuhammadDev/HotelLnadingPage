@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/header';
 import hotelimg from "./assets/images/hotel.jpg"
-import { ChevronLeft, ChevronRight, BedDouble, Wifi, Car, Phone, AtSign, MapPinned, CarFront, Shirt, Check, SquareUser, HandPlatter, Clock, CircleUser, } from "lucide-react";
+import { ChevronLeft, ChevronRight, BedDouble, Wifi, Car, Phone, AtSign, MapPinned, ShowerHead, CarFront, Shirt, Check, SquareUser, HandPlatter, Clock, CircleUser, } from "lucide-react";
 import bedroom from "./assets/images/bedroom.png"
 import goodplace from "./assets/images/goodplace.png"
 import resturant from "./assets/images/resturant.png"
@@ -13,6 +13,7 @@ import emailjs from 'emailjs-com';
 import { useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 
 
 const cards = [
@@ -313,48 +314,47 @@ const App = () => {
               {t("specialFeatures")}
             </h1>
 
-            <div className="flex flex-col md:flex-row justify-center gap-40">
-              <div
-                className="flex-1 space-y-4"
-                data-aos="fade-right"
-                data-aos-duration="800"
-                data-aos-delay="200"
-              >
-                <div className="flex items-center gap-2">
-                  <BedDouble className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("cozyRooms")}</h2>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("kitchen")}</h2>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Shirt className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("daily_cleaning")}</h2>
-                </div>
-                <div className="flex items-center gap-2">
-                  <HandPlatter className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("roomService")}</h2>
-                </div>
-              </div>
+            <div className="flex  justify-center ">
 
-              <div
-                className="flex-1 space-y-4"
-                data-aos="fade-left"
-                data-aos-duration="800"
-                data-aos-delay="200"
-              >
-                <div className="flex items-center gap-2">
-                  <SquareUser className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("conferenceRoom")}</h2>
+              <div className='gap-40 flex-col flex md:flex-row'>
+                <div
+                  className="flex-1 space-y-4"
+                  data-aos="fade-right"
+                  data-aos-duration="800"
+                  data-aos-delay="200"
+                >
+                  <div className="flex items-center gap-2">
+                    <BedDouble className="text-[#CC9973]" />
+                    <h2 className="text-xl font-semibold">{t("cozyRooms")}</h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="text-[#CC9973]" />
+                    <h2 className="text-xl font-semibold">{t("kitchen")}</h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <HandPlatter className="text-[#CC9973]" />
+                    <h2 className="text-xl font-semibold">{t("roomService")}</h2>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("twentyFourSeven")}</h2>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="text-[#CC9973]" />
-                  <h2 className="text-xl font-semibold">{t("freeParking")}</h2>
+
+                <div
+                  className="flex-1 space-y-4"
+                  data-aos="fade-left"
+                  data-aos-duration="800"
+                  data-aos-delay="200"
+                >
+                  <div className="flex items-center gap-2">
+                    <Clock className="text-[#CC9973]" />
+                    <h2 className="text-xl font-semibold">{t("twentyFourSeven")}</h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="text-[#CC9973]" />
+                    <h2 className="text-xl font-semibold">{t("freeParking")}</h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ShowerHead className="text-[#CC9973]" />
+                    <h2 className="text-xl font-semibold">{t("bathroom")}</h2>
+                  </div>
                 </div>
               </div>
             </div>
@@ -398,7 +398,7 @@ const App = () => {
 
                 {/* Second Section */}
                 <div
-                  className="flex flex-col items-center text-center"
+                  className="flex flex-col mb-20 items-center text-center"
                   data-aos="fade-left"
                   data-aos-duration="800"
                   data-aos-delay="400"
@@ -410,8 +410,7 @@ const App = () => {
 
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-10">
                     <div>
-                      <h1 className="text-2xl font-bold">
-                        {t("nearestMetro")}
+                      <h1 className="text-2xl font-bold"  dangerouslySetInnerHTML={{ __html: t("nearestMetro") }}>
                       </h1>
                     </div>
                     <div>
