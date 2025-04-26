@@ -14,8 +14,6 @@ import { useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-
-
 const cards = [
   { id: 1, title: "Card 1", content: "This is the first card This is the first card This is the first card This is the first card" },
   { id: 2, title: "Card 2", content: "This is the first card This is the first card This is the first card This is the first card" },
@@ -26,8 +24,6 @@ const cards = [
   { id: 7, title: "Card 5", content: "This is the first card This is the first card This is the first card This is the first card" },
 
 ];
-
-
 
 const App = () => {
 
@@ -46,28 +42,51 @@ const App = () => {
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const visibleCount = 4;
-  const [startIndex, setStartIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const sliderRef = useRef(null);
 
-  const getVisibleCards = () => {
-    return cards.slice(startIndex, startIndex + visibleCount);
+  // Xatoliklarni oldini olish uchun prev/next tugmalarini ishlatishda "startIndex"ni qo'llab-quvvatlang.
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 3; // Slayderda ko'rinadigan kartalar soni
+  const cards = [{ id: 1, title: "Card 1", content: "Description 1" }, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" }, /* Add your cards here */];
+
+  // Drag start
+  const onMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - sliderRef.current.offsetLeft);
+    setScrollLeft(sliderRef.current.scrollLeft);
+  };
+
+  // Drag move
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Surish tezligini sozlash
+    sliderRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  // Drag end
+  const onMouseUp = () => {
+    setIsDragging(false);
   };
 
   const next = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % cards.length);
+    if (startIndex < cards.length - visibleCount) {
+      setStartIndex(startIndex + 1);
+    }
   };
 
   const prev = () => {
-    setStartIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
   };
-
 
   const goTo = (index) => {
     setStartIndex(index);
   };
-
-  const visibleCards = getVisibleCards();
-
   // ///////////////////////// Email js /////////////////////////////
   const form = useRef();
 
@@ -201,8 +220,14 @@ const App = () => {
 
         <section className="mt-40">
           <div id='rasimlar' className="w-full flex flex-col items-center gap-6">
-            <div className="relative w-full h-[400px] max-w-6xl overflow-hidden">
-
+            <div
+              ref={sliderRef}
+              className="relative w-full h-[400px] max-w-6xl overflow-hidden"
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+            >
               <div
                 className="flex gap-5 transition-transform duration-500 ease-in-out"
                 style={{
@@ -210,10 +235,7 @@ const App = () => {
                 }}
               >
                 {cards.map((card) => (
-                  <div
-                    key={card.id}
-                    className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2"
-                  >
+                  <div key={card.id} className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2">
                     <div className="shadow-xl rounded-2xl p-6 h-96 flex flex-col items-center justify-center bg-white">
                       <img
                         src="https://picsum.photos/1600/500?random=1"
@@ -252,6 +274,19 @@ const App = () => {
                 <ChevronRight />
               </button>
 
+              {/* Indicators */}
+              <div className="flex gap-2 mt-4">
+                {cards.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => goTo(idx)}
+                    className={`w-3 h-3 rounded-full transition-all ${idx === startIndex
+                      ? "bg-[#017A87] scale-125"
+                      : "bg-gray-300 hover:bg-[#017A87]"
+                      }`}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Indicators */}
@@ -410,7 +445,7 @@ const App = () => {
 
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-10">
                     <div>
-                      <h1 className="text-2xl font-bold"  dangerouslySetInnerHTML={{ __html: t("nearestMetro") }}>
+                      <h1 className="text-2xl font-bold" dangerouslySetInnerHTML={{ __html: t("nearestMetro") }}>
                       </h1>
                     </div>
                     <div>

@@ -49,7 +49,7 @@ const Header = () => {
             <div className="bg-gradient-to-r z-50 fixed bg-[#017A87] w-full px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
                 <div className="flex items-center gap-2 w-40 h-16">
-                    <img src={animhostel} alt="Logo" className="w-40 h-28 object-contain" />
+                    <a href="#"><img src={animhostel} alt="Logo" className="w-40 h-28 object-contain" /></a>
                 </div>
 
                 {/* Desktop menu */}
