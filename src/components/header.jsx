@@ -1,17 +1,43 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next'; // Importing translation hook
+import { useTranslation } from 'react-i18next';
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from 'react-scroll';
 import "../i18"
+import emailjs from 'emailjs-com';
+import { useRef } from 'react';
 
 
 const Header = () => {
-    const { t, i18n } = useTranslation(); // Initialize useTranslation
+    const { t, i18n } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleLanguage = (lang) => {
         i18n.changeLanguage(lang);
+    };
+    // /////////////////////////// Email js //////////////////////////////////////////
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm(
+                'service_zarp7qs',   // masalan: service_ab123cd
+                'template_n9y64se',  // masalan: template_ef456gh
+                form.current,
+                '7STayiENTcu0WLfMR'    // masalan: public_xxYyZz
+            )
+            .then(
+                (result) => {
+                    console.log('Email sent!', result.text);
+                    alert('Xabar yuborildi!');
+                },
+                (error) => {
+                    console.log('Error:', error.text);
+                    alert('Xatolik yuz berdi!');
+                }
+            );
     };
 
 
@@ -110,7 +136,7 @@ const Header = () => {
 
                                 <h2 className="text-xl font-semibold text-center mb-4">{t("orderTitle")}</h2>
 
-                                <form className="flex flex-col gap-4">
+                                <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
                                     <input
                                         type="text"
                                         placeholder={t("namePlaceholder")}
@@ -127,6 +153,7 @@ const Header = () => {
                                         type="email"
                                         placeholder={t("emailPlaceholder")}
                                         className="border rounded px-4 py-2"
+
                                     />
 
                                     <button

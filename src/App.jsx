@@ -9,6 +9,8 @@ import parkovka from "./assets/images/parkovka.png"
 import { useTranslation } from 'react-i18next'; // Importing translation hook
 import { Link } from 'react-scroll';
 import "./i18"
+import emailjs from 'emailjs-com';
+import { useRef } from 'react';
 
 
 const cards = [
@@ -26,7 +28,7 @@ const cards = [
 
 const App = () => {
   const { t } = useTranslation();
-  
+
   const features = [
     { id: 1, title: t('title_comfort_room'), img: bedroom, description: t("wifi_tv_service") },
     { id: 2, title: t('title_best_place'), img: goodplace, description: t('best_location') },
@@ -56,6 +58,31 @@ const App = () => {
 
   const visibleCards = getVisibleCards();
 
+  // ///////////////////////// Email js /////////////////////////////
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        'service_zarp7qs',   // masalan: service_ab123cd
+        'template_n9y64se',  // masalan: template_ef456gh
+        form.current,
+        '7STayiENTcu0WLfMR'    // masalan: public_xxYyZz
+      )
+      .then(
+        (result) => {
+          console.log('Email sent!', result.text);
+          alert('Xabar yuborildi!');
+        },
+        (error) => {
+          console.log('Error:', error.text);
+          alert('Xatolik yuz berdi!');
+        }
+      );
+  };
+
   return (
     <>
       <Header />
@@ -83,7 +110,7 @@ const App = () => {
             <div className="w-full md:w-1/2 text-center md:text-left">
               <p className="text-[#017A87] text-sm font-semibold mb-2">{t("aboutUs")}</p>
               <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-               {t("hotelDescription")}
+                {t("hotelDescription")}
               </h1>
               <p className="text-gray-700 text-sm md:text-base mb-6">
                 {t("hotelLocation")}
@@ -108,7 +135,7 @@ const App = () => {
 
                     <h2 className="text-xl font-semibold text-center mb-4">{t("orderTitle")}</h2>
 
-                    <form className="flex flex-col gap-4">
+                    <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
                       <input
                         type="text"
                         placeholder={t("namePlaceholder")}
@@ -134,6 +161,7 @@ const App = () => {
                         {t("submitButton")}
                       </button>
                     </form>
+
                   </div>
                 </div>
               )}
@@ -354,38 +382,42 @@ const App = () => {
               <h2 className="text-5xl font-bold mb-6">{t("contactUs")}</h2>
 
               {/* Ism va Telefon yonma-yon */}
-              <div className="flex flex-col md:flex-row gap-4 mb-4">
-                <div className="w-full md:w-1/2">
+              <form ref={form} onSubmit={sendEmail} action="">
+                <div className="flex flex-col md:flex-row gap-4 mb-4">
+                  <div className="w-full md:w-1/2">
 
-                  <input
-                    type="text"
-                    placeholder={t("namePlaceholder")}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                    <input
+                      type="text"
+                      placeholder={t("namePlaceholder")}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  <div className="w-full md:w-1/2">
+
+                    <input
+                      type="text"
+                      placeholder="+998 90 123 45 67"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
                 </div>
 
-                <div className="w-full md:w-1/2">
-
-                  <input
-                    type="text"
-                    placeholder="+998 90 123 45 67"
+                <div className="mb-4">
+                  <label className="block text-gray-700 mb-2">{t("yourMessage")}</label>
+                  <textarea
+                    placeholder={t("writeYourMessage")}
+                    rows="4"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                  ></textarea>
                 </div>
-              </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">{t("yourMessage")}</label>
-                <textarea
-                  placeholder={t("writeYourMessage")}
-                  rows="4"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-              </div>
+                <button type='submit' className="w-full bg-[#017A87] text-white py-3 rounded-lg transition">
+                  {t("sendRequest")}
+                </button>
+              </form>
 
-              <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-               {t("sendRequest")}
-              </button>
+
             </div>
           </div>
         </section>
@@ -432,7 +464,7 @@ const App = () => {
             <h1 className='mb-4 font-semibold text-lg'>{t("manager")}</h1>
             <p className='mb-2'>+998 97 964 70 00</p>
             <button className='text-white bg-[#c39c75] px-4 py-2 rounded-md font-semibold hover:bg-[#a8835c] transition'>
-             {t("orderButton")}
+              {t("orderButton")}
             </button>
           </div>
 
