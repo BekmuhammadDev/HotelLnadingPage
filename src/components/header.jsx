@@ -11,7 +11,7 @@ const Header = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleLanguage = (lang) => {
-        i18n.changeLanguage(lang); 
+        i18n.changeLanguage(lang);
     };
 
 
@@ -19,21 +19,59 @@ const Header = () => {
         <header className="w-full ">
 
             {/* Main nav */}
-            <div className="bg-gradient-to-r z-50 fixed w-full from-[#1e3a5f] to-[#3a4d5f] px-6 py-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r z-50 fixed bg-[#017A87] w-full px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
                 <div className="flex items-center gap-2">
                     <img src="/logo.png" alt="Logo" className="w-12 h-12 object-contain" />
                 </div>
 
                 {/* Desktop menu */}
-                <nav className="hidden  md:flex gap-8 text-white font-semibold tracking-wide text-sm">
-                    <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("aboutUs")}</Link>
-                    <Link to="rasimlar" smooth={true} duration={500} offset={-150} className="cursor-pointer">{t("images")}</Link>
-                    <Link to="afzalliklar" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("advantages")}</Link>
-                    <Link to="bronqilish" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("booking")}</Link>
-                    <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer">{t("contacts")}</Link>
+                <nav className="hidden lg:flex gap-6 text-white font-semibold tracking-wide">
+                    <Link
+                        to="bizhaqimizda"
+                        smooth={true}
+                        duration={500}
+                        offset={-100}
+                        className="cursor-pointer text-xs md:text-sm lg:text-base 2xl:text-lg"
+                    >
+                        {t("aboutUs")}
+                    </Link>
+                    <Link
+                        to="rasimlar"
+                        smooth={true}
+                        duration={500}
+                        offset={-150}
+                        className="cursor-pointer text-xs md:text-sm lg:text-base 2xl:text-lg"
+                    >
+                        {t("images")}
+                    </Link>
+                    <Link
+                        to="afzalliklar"
+                        smooth={true}
+                        duration={500}
+                        offset={-100}
+                        className="cursor-pointer text-xs md:text-sm lg:text-base 2xl:text-lg"
+                    >
+                        {t("advantages")}
+                    </Link>
+                    <Link
+                        to="bronqilish"
+                        smooth={true}
+                        duration={500}
+                        offset={-100}
+                        className="cursor-pointer text-xs md:text-sm lg:text-base 2xl:text-lg"
+                    >
+                        {t("booking")}
+                    </Link>
+                    <Link
+                        to="kontaktlar"
+                        smooth={true}
+                        duration={500}
+                        className="cursor-pointer text-xs md:text-sm lg:text-base 2xl:text-lg"
+                    >
+                        {t("contacts")}
+                    </Link>
                 </nav>
-
 
                 {/* Order Button */}
                 <div className='flex items-center gap-10'>
@@ -56,7 +94,7 @@ const Header = () => {
                         className="hidden md:block bg-[#c39c75] text-white font-semibold px-10 py-2 rounded"
                         onClick={() => setIsModalOpen(true)}
                     >
-                      {t("orderButton")}
+                        {t("orderButton")}
                     </button>
                     {/* Buyurtma */}
                     {isModalOpen && (
