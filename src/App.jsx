@@ -42,51 +42,55 @@ const App = () => {
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const visibleCount = 3;
+
+  const [startIndex, setStartIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const sliderRef = useRef(null);
 
-  // Xatoliklarni oldini olish uchun prev/next tugmalarini ishlatishda "startIndex"ni qo'llab-quvvatlang.
-  const [startIndex, setStartIndex] = useState(0);
-  const visibleCount = 3; // Slayderda ko'rinadigan kartalar soni
-  const cards = [{ id: 1, title: "Card 1", content: "Description 1" }, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" },, { id: 2, title: "Card 2", content: "Description 2" }, /* Add your cards here */];
-
-  // Drag start
-  const onMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
-  };
-
-  // Drag move
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Surish tezligini sozlash
-    sliderRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  // Drag end
-  const onMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const next = () => {
-    if (startIndex < cards.length - visibleCount) {
-      setStartIndex(startIndex + 1);
-    }
-  };
-
+  // Navigate to the previous set of cards
   const prev = () => {
     if (startIndex > 0) {
       setStartIndex(startIndex - 1);
     }
   };
 
+  // Navigate to the next set of cards
+  const next = () => {
+    if (startIndex < cards.length - visibleCount) {
+      setStartIndex(startIndex + 1);
+    }
+  };
+
+  // Navigate to a specific index
   const goTo = (index) => {
     setStartIndex(index);
   };
+
+  // Start dragging
+  const onMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - sliderRef.current.offsetLeft);
+    setScrollLeft(sliderRef.current.scrollLeft);
+    sliderRef.current.style.cursor = "grabbing"; // Change cursor style
+  };
+
+  // During dragging, move the cards
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll intensity
+    sliderRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  // End dragging
+  const onMouseUp = () => {
+    setIsDragging(false);
+    sliderRef.current.style.cursor = "grab"; // Reset cursor style
+  };
+
   // ///////////////////////// Email js /////////////////////////////
   const form = useRef();
 
@@ -220,6 +224,8 @@ const App = () => {
 
         <section className="mt-40">
           <div id='rasimlar' className="w-full flex flex-col items-center gap-6">
+
+
             <div
               ref={sliderRef}
               className="relative w-full h-[400px] max-w-6xl overflow-hidden"
@@ -260,6 +266,7 @@ const App = () => {
                   </div>
                 ))}
               </div>
+
               {/* Navigation Buttons */}
               <button
                 onClick={prev}

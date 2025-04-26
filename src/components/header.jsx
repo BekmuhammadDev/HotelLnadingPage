@@ -102,7 +102,7 @@ const Header = () => {
 
                 {/* Order Button */}
                 <div className='flex items-center gap-10'>
-                    <div className="flex items-center gap-2 text-xl">
+                    <div className=" hidden lg:flex items-center gap-2 text-xl">
                         <span
                             className="cursor-pointer text-white"
                             onClick={() => toggleLanguage('uz')}
@@ -177,7 +177,7 @@ const Header = () => {
             </div>
 
             {isMenuOpen && (
-                <div className="md:hidden fixed top-20 flex flex-col gap-2 px-5 z-40 w-full bg-[#1e3a5f] text-white  py-4 space-y-4 text-sm font-semibold">
+                <div className="md:hidden fixed top-24 flex flex-col gap-2 px-5 z-40 w-full bg-[#1e3a5f] text-white  py-4 space-y-4 text-sm font-semibold">
 
                     {/* Regular menu links */}
                     <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("aboutUs")}</Link>
@@ -187,9 +187,25 @@ const Header = () => {
                     <Link to="kontaktlar" smooth={true} duration={500} className="cursor-pointer">{t("contacts")}</Link>
 
                     {/* Order Button */}
+                    <div className=" flex items-center gap-2 text-xl">
+                        <span
+                            className="cursor-pointer text-white"
+                            onClick={() => toggleLanguage('uz')}
+                        >
+                            🇺🇿
+                        </span>
+                        <span className='text-white'>/</span>
+                        <span
+                            className="cursor-pointer text-white"
+                            onClick={() => toggleLanguage('ru')}
+                        >
+                            🇷🇺
+                        </span>
+                    </div>
                     <button className="w-full bg-[#c39c75] text-white px-4 py-2 mt-4 rounded">
                         BUYURTMA
                     </button>
+
                 </div>
             )}
         </header>
