@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/header';
 import hotelimg from "./assets/images/hotel.jpg"
 import { ChevronLeft, ChevronRight, BedDouble, Wifi, Car, Phone, AtSign, MapPinned, CarFront, Shirt, Check, SquareUser, HandPlatter, Clock, CircleUser, } from "lucide-react";
@@ -11,6 +11,8 @@ import { Link } from 'react-scroll';
 import "./i18"
 import emailjs from 'emailjs-com';
 import { useRef } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const cards = [
@@ -27,7 +29,13 @@ const cards = [
 
 
 const App = () => {
+
   const { t } = useTranslation();
+
+  useEffect(() => {
+    AOS.init({ once: true });
+  }, []);
+
 
   const features = [
     { id: 1, title: t('title_comfort_room'), img: bedroom, description: t("wifi_tv_service") },
@@ -49,8 +57,9 @@ const App = () => {
   };
 
   const prev = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % cards.length);
+    setStartIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
   };
+
 
   const goTo = (index) => {
     setStartIndex(index);
@@ -99,15 +108,29 @@ const App = () => {
         </section>
 
         <section id='bizhaqimizda' className="px-6 md:px-10">
-          <div className="mt-40  flex flex-col md:flex-row items-center gap-10">
+          <div className="mt-40 overflow-hidden flex flex-col md:flex-row items-center gap-10">
 
             {/* Image */}
-            <div className="w-full md:w-1/2">
-              <img src={hotelimg} alt="Hotel Interior" className="rounded-lg shadow-lg w-full" />
+            <div
+              className="w-full md:w-1/2"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              data-aos-delay="100"
+            >
+              <img
+                src={hotelimg}
+                alt="Hotel Interior"
+                className="rounded-lg shadow-lg w-full"
+              />
             </div>
 
-            {/* Text content */}
-            <div className="w-full md:w-1/2 text-center md:text-left">
+            {/* Text Content */}
+            <div
+              className="w-full md:w-1/2 text-center md:text-left"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="300"
+            >
               <p className="text-[#017A87] text-sm font-semibold mb-2">{t("aboutUs")}</p>
               <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
                 {t("hotelDescription")}
@@ -118,13 +141,20 @@ const App = () => {
               <button
                 className="bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 px-6 rounded"
                 onClick={() => setIsModalOpen(true)}
+                data-aos="zoom-in"
+                data-aos-delay="500"
               >
                 {t("preOrder")}
               </button>
-              {/* Buyurtma */}
+
+              {/* Modal */}
               {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                  <div className="bg-white rounded-2xl w-full max-w-md p-6 relative shadow-lg">
+                  <div
+                    className="bg-white rounded-2xl w-full max-w-md p-6 relative shadow-lg"
+                    data-aos="zoom-in"
+                    data-aos-duration="500"
+                  >
                     {/* Close Button */}
                     <button
                       className="absolute top-2 right-2 text-xl text-gray-600 hover:text-red-500"
@@ -153,7 +183,6 @@ const App = () => {
                         placeholder={t("emailPlaceholder")}
                         className="border rounded px-4 py-2"
                       />
-
                       <button
                         type="submit"
                         className="bg-[#017A87] text-white font-semibold py-2 rounded hover:bg-[#015f67]"
@@ -161,7 +190,6 @@ const App = () => {
                         {t("submitButton")}
                       </button>
                     </form>
-
                   </div>
                 </div>
               )}
@@ -169,9 +197,11 @@ const App = () => {
           </div>
         </section>
 
+
         <section className="mt-40">
           <div id='rasimlar' className="w-full flex flex-col items-center gap-6">
             <div className="relative w-full h-[400px] max-w-6xl overflow-hidden">
+
               <div
                 className="flex gap-5 transition-transform duration-500 ease-in-out"
                 style={{
@@ -206,9 +236,7 @@ const App = () => {
                     </div>
                   </div>
                 ))}
-
               </div>
-
               {/* Navigation Buttons */}
               <button
                 onClick={prev}
@@ -222,6 +250,7 @@ const App = () => {
               >
                 <ChevronRight />
               </button>
+
             </div>
 
             {/* Indicators */}
@@ -237,20 +266,28 @@ const App = () => {
                 />
               ))}
             </div>
+
           </div>
         </section>
 
-        <section id='afzalliklar' className="mt-40 bg-[#F7F5F1] py-20 px-4">
+        <section id='afzalliklar' className="mt-40 bg-[#F7F5F1] py-20 px-4  overflow-hidden">
           {/* AFZALLIKLAR */}
-          <div className="text-center">
+          <div className="text-center" data-aos="fade-up" data-aos-duration="800">
             <h1 className="text-3xl md:text-5xl font-bold mb-10">{t("benefits")}</h1>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2  gap-8 mb-20 max-w-7xl mx-auto">
-            {features.map((feature) => (
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-20 max-w-7xl mx-auto"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="100"
+          >
+            {features.map((feature, index) => (
               <div
                 key={feature.id}
                 className="relative h-[320px] overflow-hidden rounded-lg shadow-lg bg-white cursor-pointer transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                data-aos="zoom-in"
+                data-aos-delay={index * 100}
               >
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-4">
@@ -268,10 +305,21 @@ const App = () => {
 
           {/* MAXSUS XUSUSIYATLAR */}
           <div className="mt-16 max-w-6xl mx-auto px-4">
-            <h1 className="text-4xl font-bold text-center mb-12">{t("specialFeatures")}</h1>
-            <div className="flex flex-col md:flex-row justify-center gap-40">
+            <h1
+              className="text-4xl font-bold text-center mb-12"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              {t("specialFeatures")}
+            </h1>
 
-              <div className="flex-1 space-y-4">
+            <div className="flex flex-col md:flex-row justify-center gap-40">
+              <div
+                className="flex-1 space-y-4"
+                data-aos="fade-right"
+                data-aos-duration="800"
+                data-aos-delay="200"
+              >
                 <div className="flex items-center gap-2">
                   <BedDouble className="text-[#CC9973]" />
                   <h2 className="text-xl font-semibold">{t("cozyRooms")}</h2>
@@ -290,7 +338,12 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="flex-1 space-y-4">
+              <div
+                className="flex-1 space-y-4"
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-delay="200"
+              >
                 <div className="flex items-center gap-2">
                   <SquareUser className="text-[#CC9973]" />
                   <h2 className="text-xl font-semibold">{t("conferenceRoom")}</h2>
@@ -308,15 +361,23 @@ const App = () => {
           </div>
         </section>
 
-
-        <section className='mt-40'>
+        <section className='mt-40  overflow-hidden'>
           <div className='px-10'>
-            <div className=" py-10 px-4">
-              <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-center items-center gap-16 lg:gap-40">
+            <div className="py-10 px-4">
+              <div
+                className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-center items-center gap-16 lg:gap-40"
+                data-aos="fade-up"
+                data-aos-duration="800"
+              >
 
                 {/* First Section */}
-                <div className="flex flex-col items-center text-center">
-                  <div className=" rounded-full p-4 mb-4">
+                <div
+                  className="flex flex-col items-center text-center"
+                  data-aos="fade-right"
+                  data-aos-duration="800"
+                  data-aos-delay="200"
+                >
+                  <div className="rounded-full p-4 mb-4">
                     <CircleUser className="text-black" size={100} />
                   </div>
                   <h1 className="text-3xl font-bold mb-10">{t("facilities")}</h1>
@@ -336,8 +397,13 @@ const App = () => {
                 </div>
 
                 {/* Second Section */}
-                <div className="flex flex-col items-center text-center">
-                  <div className=" rounded-full p-4 mb-4">
+                <div
+                  className="flex flex-col items-center text-center"
+                  data-aos="fade-left"
+                  data-aos-duration="800"
+                  data-aos-delay="400"
+                >
+                  <div className="rounded-full p-4 mb-4">
                     <CarFront className="text-black" size={100} />
                   </div>
                   <h1 className="text-3xl font-bold mb-10">{t("metroDistance")}</h1>
@@ -357,14 +423,19 @@ const App = () => {
 
               </div>
             </div>
-
           </div>
         </section>
 
-        <section id='bronqilish' className='bg-[#F7F5F1]'>
+
+        <section id='bronqilish' className='bg-[#F7F5F1]  overflow-hidden'>
           <div className="flex flex-col md:flex-row gap-8 p-6 md:p-12 ">
+
             {/* Chap tarafdagi karta */}
-            <div className="w-full md:w-1/2 bg-white rounded-2xl shadow-lg flex items-center justify-center ">
+            <div
+              className="w-full md:w-1/2 bg-white rounded-2xl shadow-lg flex items-center justify-center"
+              data-aos="fade-right"
+              data-aos-duration="800"
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6090.994748927668!2d72.3307203!3d40.8011046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb85f1c4d10b11%3A0xb8bdf7a53d26a0c3!2sPasport%20Stol%20%E2%84%962!5e0!3m2!1sru!2s!4v1714036123456!5m2!1sru!2s"
                 width="100%"
@@ -376,16 +447,19 @@ const App = () => {
               ></iframe>
             </div>
 
-
             {/* O'ng tarafdagi forma */}
-            <div className="w-full md:w-1/2 p-8">
+            <div
+              className="w-full md:w-1/2 p-8"
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
               <h2 className="text-5xl font-bold mb-6">{t("contactUs")}</h2>
 
               {/* Ism va Telefon yonma-yon */}
               <form ref={form} onSubmit={sendEmail} action="">
                 <div className="flex flex-col md:flex-row gap-4 mb-4">
                   <div className="w-full md:w-1/2">
-
                     <input
                       type="text"
                       placeholder={t("namePlaceholder")}
@@ -394,7 +468,6 @@ const App = () => {
                   </div>
 
                   <div className="w-full md:w-1/2">
-
                     <input
                       type="text"
                       placeholder="+998 90 123 45 67"
@@ -412,15 +485,17 @@ const App = () => {
                   ></textarea>
                 </div>
 
-                <button type='submit' className="w-full bg-[#017A87] text-white py-3 rounded-lg transition">
+                <button
+                  type="submit"
+                  className="w-full bg-[#017A87] text-white py-3 rounded-lg transition"
+                >
                   {t("sendRequest")}
                 </button>
               </form>
-
-
             </div>
           </div>
         </section>
+
 
       </main>
       <footer id='kontaktlar' className='mt-40 bg-[#017A87] text-white'>
