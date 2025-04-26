@@ -170,57 +170,55 @@ const App = () => {
               >
                 {t("preOrder")}
               </button>
-
-              {/* Modal */}
-              {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                  <div
-                    className="bg-white rounded-2xl w-full max-w-md p-6 relative shadow-lg"
-                    data-aos="zoom-in"
-                    data-aos-duration="500"
-                  >
-                    {/* Close Button */}
-                    <button
-                      className="absolute top-2 right-2 text-xl text-gray-600 hover:text-red-500"
-                      onClick={() => setIsModalOpen(false)}
-                    >
-                      &times;
-                    </button>
-
-                    <h2 className="text-xl font-semibold text-center mb-4">{t("orderTitle")}</h2>
-
-                    <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
-                      <input
-                        type="text"
-                        placeholder={t("namePlaceholder")}
-                        className="border rounded px-4 py-2"
-                        required
-                      />
-                      <input
-                        type="tel"
-                        placeholder={t("phonePlaceholder")}
-                        className="border rounded px-4 py-2"
-                        required
-                      />
-                      <input
-                        type="email"
-                        placeholder={t("emailPlaceholder")}
-                        className="border rounded px-4 py-2"
-                      />
-                      <button
-                        type="submit"
-                        className="bg-[#017A87] text-white font-semibold py-2 rounded hover:bg-[#015f67]"
-                      >
-                        {t("submitButton")}
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              )}
             </div>
-          </div>
-        </section>
 
+          </div>
+
+          {/* Modal tashqarida */}
+          {isModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div
+                className="bg-white rounded-2xl w-[90%] max-w-md p-6 relative shadow-lg"
+              >
+                {/* Close Button */}
+                <button
+                  className="absolute top-2 right-2 text-2xl text-gray-600 hover:text-red-500"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  &times;
+                </button>
+
+                <h2 className="text-xl font-semibold text-center mb-4">{t("orderTitle")}</h2>
+
+                <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
+                  <input
+                    type="text"
+                    placeholder={t("namePlaceholder")}
+                    className="border rounded px-4 py-2"
+                    required
+                  />
+                  <input
+                    type="tel"
+                    placeholder={t("phonePlaceholder")}
+                    className="border rounded px-4 py-2"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder={t("emailPlaceholder")}
+                    className="border rounded px-4 py-2"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-[#017A87] text-white font-semibold py-2 rounded hover:bg-[#015f67]"
+                  >
+                    {t("submitButton")}
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+        </section>
 
         <section className="mt-40">
           <div id='rasimlar' className="w-full flex flex-col items-center gap-6">
