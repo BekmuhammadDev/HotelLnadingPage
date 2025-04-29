@@ -24,11 +24,6 @@ const cards = [
   { id: 7, title: "Card 5", content: "This is the first card This is the first card This is the first card This is the first card" },
 
 ];
-const images = [
-  "https://picsum.photos/1600/500?random=1",
-  "https://picsum.photos/1600/500?random=2",
-  "https://picsum.photos/1600/500?random=3",
-];
 const App = () => {
 
   const { t } = useTranslation();
@@ -120,37 +115,69 @@ const App = () => {
       );
   };
 
+  // ////////////////////////////////////////////////////////////////
+  const images = [
+    "https://picsum.photos/1600/500?random=1",
+    "https://picsum.photos/1600/500?random=2",
+    "https://picsum.photos/1600/500?random=3",
+    "https://picsum.photos/1600/500?random=4",
+    "https://picsum.photos/1600/500?random=5",
+  ];
 
+  const extendedImages = [...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images,];
+  const middleIndex = images.length;
+  const [currentIndex, setCurrentIndex] = useState(middleIndex);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const cardWidth = 1200 + 32;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 12000);
+      setCurrentIndex((prev) => prev + 1);
+    }, 8000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (currentIndex >= extendedImages.length - images.length) {
+      setTimeout(() => {
+        setCurrentIndex(middleIndex);
+      }, 700);
+    }
+  }, [currentIndex, extendedImages.length, images.length]);
+
+  // ///////////////////////////////////////////////////////////////////////
+
   return (
     <>
       <Header />
       <main>
 
-        <section className="w-full h-[100vh] overflow-hidden relative">
+        <section className="w-full h-[50vh] lg:h-[80vh] top-28 overflow-hidden relative flex justify-center items-cente">
           <div
-            className="flex transition-transform duration-1000 ease-in-out h-full"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            className="flex gap-8 transition-transform duration-700 ease-in-out h-full items-center"
+            style={{
+              transform: `translateX(-${currentIndex * cardWidth}px)`,
+              width: `${cardWidth * extendedImages.length}px`,
+            }}
           >
-            {images.map((img, index) => (
-              <div key={index} className="w-full flex-shrink-0 h-[100vh] bg-cover bg-center" style={{ backgroundImage: `url(${img})` }}>
-                <div className="w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-                 <div>
-                 <h2 className="text-white text-4xl mb-3 md:text-6xl font-bold">
+            {extendedImages.map((img, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-[1200px] h-[500px] xl:h-[80%] rounded-xl overflow-hidden bg-cover bg-center shadow-xl"
+                style={{ backgroundImage: `url(${img})` }}
+              >
+                <div className="w-full h-full bg-black/40 flex flex-col items-center justify-center text-white p-4 sm:p-6 md:p-8">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 drop-shadow-lg text-center">
                     Welcome to Our Section
                   </h2>
-                  <p className='text-white text-2xl mb-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br /> Odio tempora aut delectus ducimus! Quibusdam nesciunt, quis ipsa ex accusantium repellat?</p>
-                  <button className='bg-white p-3 px-5 rounded-md font-bold'>kO‘RISH</button>
-                 </div>
+                  <p className="text-sm sm:text-base md:text-lg mb-6 text-center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </p>
+                  <button className="bg-white text-black font-semibold text-sm sm:text-base px-4 sm:px-6 py-2 rounded hover:bg-gray-300 transition">
+                    KO‘RISH
+                  </button>
                 </div>
+
               </div>
             ))}
           </div>
@@ -413,8 +440,8 @@ const App = () => {
                     <h2 className="text-xl font-semibold">{t("twentyFourSeven")}</h2>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock className="text-[#CC9973]" />
-                    <h2 className="text-xl font-semibold">{t("freeParking")}</h2>
+                    <Car className="text-[#CC9973]" />
+                    <h2 className="text-xl leading-[1.1] font-semibold">{t("freeParking")}</h2>
                   </div>
                   <div className="flex items-center gap-2">
                     <ShowerHead className="text-[#CC9973]" />
@@ -463,7 +490,7 @@ const App = () => {
 
                 {/* Second Section */}
                 <div
-                  className="flex flex-col mb-20 items-center text-center"
+                  className="flex flex-col mb-28 items-center text-center"
                   data-aos="fade-left"
                   data-aos-duration="800"
                   data-aos-delay="400"
@@ -561,7 +588,7 @@ const App = () => {
         </section>
 
 
-      </main>
+      </main >
       <footer id='kontaktlar' className='mt-40 bg-[#017A87] text-white'>
         <div className='max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
 

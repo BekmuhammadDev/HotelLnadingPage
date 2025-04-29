@@ -22,7 +22,7 @@ i18n.use(initReactI18next).init({
         "contacts": "KONTAKTLAR",
         "hotelDescription": "Payitaxt Hotel Andijondagi eng zamonaviy va hashamatli mehmonxona hisoblanadi.",
         "hotelLocation": "Mehmonxona shahar markaziga yaqin, Ko'plab do'kon va restoranlarga yaqin joyda joylashgan. Masjidga juda yaqin. Ushbu zamonaviy mehmonxona sizga misli ko'rilmagan hashamatni taqdim etadi. Bizning xodimlarimiz sizga sifatli xizmat ko'rsatish va unutilmas dam olishni ta'minlash uchun kechayu kunduz ishlaydi. Va barcha ehtiyojlaringizni qondirishga intiladi. Sizni kutib olishni intiqlik bilan kutamiz!",
-        "preOrder": "AVVALDAN BUYURTMA BERISH",
+        "preOrder": "Bron qilish",
         "price": "500000 so'm",
         "benefits": "AFZALLIKLAR",
         "specialFeatures": "HOSTELDAGI QULAYLIKLAR",
