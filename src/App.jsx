@@ -41,55 +41,50 @@ const App = () => {
   ];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const visibleCount = 3;
-
+  const [visibleCount, setVisibleCount] = useState(3);
   const [startIndex, setStartIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const sliderRef = useRef(null);
 
-  // Navigate to the previous set of cards
+  // Ekran o‘lchamiga qarab visibleCount ni aniqlash
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setVisibleCount(1);
+      } else if (width < 1024) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(3);
+      }
+    };
+
+    updateVisibleCount();
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
+  // Next va Prev
   const prev = () => {
     if (startIndex > 0) {
       setStartIndex(startIndex - 1);
     }
   };
 
-  // Navigate to the next set of cards
   const next = () => {
     if (startIndex < cards.length - visibleCount) {
       setStartIndex(startIndex + 1);
     }
   };
 
-  // Navigate to a specific index
+  // Indicatorga o'tish
   const goTo = (index) => {
-    setStartIndex(index);
+    if (index <= cards.length - visibleCount) {
+      setStartIndex(index);
+    }
   };
-
-  // Start dragging
-  const onMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
-    sliderRef.current.style.cursor = "grabbing"; // Change cursor style
-  };
-
-  // During dragging, move the cards
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll intensity
-    sliderRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  // End dragging
-  const onMouseUp = () => {
-    setIsDragging(false);
-    sliderRef.current.style.cursor = "grab"; // Reset cursor style
-  };
-
   // ///////////////////////// Email js /////////////////////////////
   const form = useRef();
 
@@ -275,24 +270,25 @@ const App = () => {
         <section className="mt-40">
           <div id='rasimlar' className="w-full flex flex-col items-center gap-6">
 
-
             <div
               ref={sliderRef}
               className="relative w-full h-[400px] max-w-6xl overflow-hidden"
-              onMouseDown={onMouseDown}
-              onMouseMove={onMouseMove}
-              onMouseUp={onMouseUp}
-              onMouseLeave={onMouseUp}
+
             >
               <div
-                className="flex gap-5 transition-transform duration-500 ease-in-out"
+                className="flex transition-transform duration-500 ease-in-out"
                 style={{
-                  transform: `translateX(-${startIndex * (100 / visibleCount)}%)`,
+                  transform: `translateX(-${(100 / cards.length) * startIndex}%)`,
+                  width: `${(100 / visibleCount) * cards.length}%`,
                 }}
               >
                 {cards.map((card) => (
-                  <div key={card.id} className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2">
-                    <div className="shadow-xl rounded-2xl p-6 h-96 flex flex-col items-center justify-center bg-white">
+                  <div
+                    key={card.id}
+                    className="flex justify-center items-center px-2"
+                    style={{ width: `${100 / cards.length}%` }} // har bir karta kengligi proporsional
+                  >
+                    <div className="shadow-xl rounded-2xl p-6 h-96 flex flex-col items-center justify-center bg-white w-full max-w-sm">
                       <img
                         src="https://picsum.photos/1600/500?random=1"
                         alt=""
@@ -316,6 +312,7 @@ const App = () => {
                   </div>
                 ))}
               </div>
+
 
               {/* Navigation Buttons */}
               <button
@@ -586,7 +583,6 @@ const App = () => {
             </div>
           </div>
         </section>
-
 
       </main >
       <footer id='kontaktlar' className='mt-40 bg-[#017A87] text-white'>
