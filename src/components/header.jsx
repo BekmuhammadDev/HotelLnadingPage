@@ -44,7 +44,6 @@ const Header = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-
     return (
         <header className="w-full ">
 
@@ -119,20 +118,27 @@ const Header = () => {
                         {isDropdownOpen && (
                             <div className="absolute mt-2 w-28 bg-white border border-gray-200 rounded-xl shadow-lg -right-7 z-50 overflow-hidden">
                                 <div
-                                    onClick={() => toggleLanguage('uz')}
+                                    onClick={() => {
+                                        toggleLanguage('uz');
+                                        setIsDropdownOpen(false);
+                                    }}
                                     className="px-6 py-3 hover:bg-gray-100 cursor-pointer text-center font-medium text-gray-700 transition"
                                 >
-                                    UZ 
+                                    UZ
                                 </div>
-                                <div className="border-t"></div> {/* Line between items */}
+                                <div className="border-t"></div>
                                 <div
-                                    onClick={() => toggleLanguage('ru')}
+                                    onClick={() => {
+                                        toggleLanguage('ru');
+                                        setIsDropdownOpen(false);
+                                    }}
                                     className="px-6 py-3 hover:bg-gray-100 cursor-pointer text-center font-medium text-gray-700 transition"
                                 >
                                     RU
                                 </div>
                             </div>
                         )}
+
                     </div>
 
 
@@ -196,7 +202,7 @@ const Header = () => {
             </div>
 
             {isMenuOpen && (
-                <div className="md:hidden fixed top-24 flex flex-col gap-2 px-5 z-40 w-full bg-[#1e3a5f] text-black  py-4 space-y-4 text-sm font-semibold">
+                <div className="md:hidden fixed top-24 flex flex-col gap-2 px-5 z-40 w-full backdrop-blur-2xl text-white  py-4 space-y-4 text-sm font-semibold">
 
                     {/* Regular menu links */}
                     <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("aboutUs")}</Link>
@@ -208,21 +214,21 @@ const Header = () => {
                     {/* Order Button */}
                     <div className=" flex items-center gap-2 text-xl">
                         <span
-                            className="cursor-pointer text-black"
+                            className="cursor-pointer text-white"
                             onClick={() => toggleLanguage('uz')}
                         >
                             🇺🇿
                         </span>
-                        <span className='text-black'>/</span>
+                        <span className='text-white'>/</span>
                         <span
-                            className="cursor-pointer text-black"
+                            className="cursor-pointer text-white"
                             onClick={() => toggleLanguage('ru')}
                         >
                             🇷🇺
                         </span>
                     </div>
 
-                    <button className="w-full bg-[#c39c75] text-black px-4 py-2 mt-4 rounded">
+                    <button className="w-full bg-[#c39c75] text-white px-4 py-2 mt-4 rounded">
                         BUYURTMA
                     </button>
 

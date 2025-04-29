@@ -119,7 +119,7 @@ const App = () => {
     "https://picsum.photos/1600/500?random=5",
   ];
 
-  const extendedImages = [...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images,];
+  const extendedImages = [...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images,...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images,...images];
   const middleIndex = images.length;
   const [currentIndex, setCurrentIndex] = useState(middleIndex);
 
@@ -163,10 +163,10 @@ const App = () => {
               >
                 <div className="w-full h-full bg-black/40 flex flex-col items-center justify-center text-white p-4 sm:p-6 md:p-8">
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 drop-shadow-lg text-center">
-                    Welcome to Our Section
+                   Hostelga Xush Kelibsiz
                   </h2>
                   <p className="text-sm sm:text-base md:text-lg mb-6 text-center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Mehmonxona shahar markaziga yaqin, Ko'plab do'kon va restoranlarga yaqin joyda joylashgan. Masjidga juda yaqin.
                   </p>
                   <button className="bg-white text-black font-semibold text-sm sm:text-base px-4 sm:px-6 py-2 rounded hover:bg-gray-300 transition">
                     KO‘RISH
