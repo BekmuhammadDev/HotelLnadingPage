@@ -202,7 +202,7 @@ const Header = () => {
             </div>
 
             {isMenuOpen && (
-                <div className="md:hidden fixed top-24 flex flex-col gap-2 px-5 z-40 w-full backdrop-blur-2xl text-white  py-4 space-y-4 text-sm font-semibold">
+                <div className="md:hidden fixed top-24 flex flex-col gap-2 px-5 z-40 w-full backdrop-blur-2xl text-[#c39c75]  py-4 space-y-4 text-sm font-semibold">
 
                     {/* Regular menu links */}
                     <Link to="bizhaqimizda" smooth={true} duration={500} offset={-100} className="cursor-pointer">{t("aboutUs")}</Link>
